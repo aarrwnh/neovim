@@ -39,7 +39,10 @@ function exitIfFailed() {
 function convertToCmakeArgs($vars) {
   return $vars.GetEnumerator() | ForEach-Object { "-D$($_.Key)=$($_.Value)" }
 }
-
+vswhere.exe -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64
+Write-Host "######"
+vswhere.exe -latest -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64
+Write-Host "######"
 $installationPath = vswhere.exe -latest -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
 if ($installationPath -and (Test-Path "$installationPath\Common7\Tools\vsdevcmd.bat")) {
   & "${env:COMSPEC}" /s /c "`"$installationPath\Common7\Tools\vsdevcmd.bat`" -arch=x64 -no_logo && set" | ForEach-Object {
