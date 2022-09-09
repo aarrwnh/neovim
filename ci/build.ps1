@@ -58,7 +58,7 @@ function BuildDeps {
   }
 
   # we currently can't use ninja for cmake.deps, see #19405
-  $depsCmakeGenerator = "Visual Studio 16 2019"
+  $depsCmakeGenerator = "Visual Studio 17 2022"
   $depsCmakeGeneratorPlf = "x64"
   cmake -S "$projectDir\cmake.deps" -B $env:DEPS_BUILD_DIR -G $depsCmakeGenerator -A $depsCmakeGeneratorPlf $(convertToCmakeArgs($depsCmakeVars)); exitIfFailed
 
